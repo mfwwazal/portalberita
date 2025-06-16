@@ -9,22 +9,21 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index(){
-        return view('login.index');
+        return view('login');
     }
 
     public function store(Request $request){
         $credential = $request->validate([
-            "email" => "required",
+            "email" => "required|email",
             "password" => "required"
         ]);
 
-        $credential["password"] = bcrypt($credential["password"]);
-
-        return User::where('email', $credential['email'])
-        ->where('password', $credential['password'])->first();
+        // $password = bcrypt($credential['password']);
+        // User::where('email', $credential['email'])->update(['password'=>$password]);
+        // return Auth::attempt($credential);
 
         if (Auth::attempt($credential)) {
-            // $request->session()->regenerate();
+            $request->session()->regenerate();
 
             return redirect()->route('dashboard');
         }

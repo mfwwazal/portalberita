@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beritas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        Schema::create('images', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('beritas_id')->constrained()->onDelete('cascade'); // Hubungan dengan berita
+    $table->string('path'); // Menyimpan path gambar
+    $table->timestamps();
+});
+
     }
 
     /**
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('beritas');
+        Schema::dropIfExists('images');
     }
 };

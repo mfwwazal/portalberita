@@ -11,13 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beritas', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->text('konten');
-            $table->string('gambar')->nullable();
-            $table->timestamps();
-        });
+Schema::create('beritas', function (Blueprint $table) {
+    $table->id();
+    $table->string('judul');
+    $table->text('konten');
+    $table->string('gambar')->nullable();
+    $table->timestamps();
+});
+
+Schema::create('berita_images', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('berita_id')->constrained('beritas')->onDelete('cascade');
+    $table->string('path');
+    $table->timestamps();
+});
+
     }
 
     /**

@@ -1,0 +1,35 @@
+/* public/css/dark-theme.css */
+/* Ini akan aktif ketika data-theme="dark" diterapkan pada <html> */
+html[data-theme="dark"] body {
+    background-color: #1a202c; /* Dark background */
+    color: #e2e8f0; /* Light text */
+}
+
+html[data-theme="dark"] .settings-container,
+html[data-theme="dark"] .card {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+html[data-theme="dark"] .form-control {
+    background-color: #4a5568;
+    color: #e2e8f0;
+    border-color: #6b7280;
+}
+
+html[data-theme="dark"] .form-control:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+/* Sesuaikan semua elemen UI Anda */
+/* Misalnya, mengubah warna teks navigasi, tombol, dll. */
+html[data-theme="dark"] .nav-tabs .nav-link {
+    color: #e2e8f0;
+}
+html[data-theme="dark"] .nav-tabs .nav-link.active {
+    color: #4f46e5;
+    border-bottom-color: #4f46e5;
+}
+/* ... styling untuk elemen lain di dark theme ... */

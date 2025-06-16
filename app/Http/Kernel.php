@@ -14,7 +14,7 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
+        // \App\Http\Middleware\TrustHosts::class, // Ini biasanya uncommented kalau Anda butuh
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -28,19 +28,21 @@ class Kernel extends HttpKernel
      *
      * @var array<string, array<int, class-string|string>>
      */
-    protected $middlewareGroups = [
+    protected $middlewareGroups = [ // Pastikan ini deklarasi yang benar, tanpa 'array' setelah 'protected'
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\EncryptCookies::class, // Umumnya uncommented
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, // Umumnya uncommented
+            \Illuminate\Session\Middleware\StartSession::class, // Umumnya uncommented
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class, // Umumnya uncommented
+            \App\Http\Middleware\VerifyCsrfToken::class, // Umumnya uncommented
+            \Illuminate\Routing\Middleware\SubstituteBindings::class, // Umumnya uncommented
+            \App\Http\Middleware\SetLocale::class, // Middleware bahasa Anda
+            \App\Http\Middleware\SetTheme::class,  // Middleware tema Anda
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -65,4 +67,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    // Jika Anda memiliki $routeMiddleware, pastikan ada di sini juga.
+    // protected $routeMiddleware = [
+    //    'auth' => \App\Http\Middleware\Authenticate::class,
+    //    // ...
+    // ];
 }

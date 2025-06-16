@@ -17,19 +17,27 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login.store') }}">
             @csrf
 
             <div class="mb-4">
                 <label for="email" class="block mb-1 text-sm">Email</label>
                 <input type="email" name="email" id="email" required autofocus
-                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    value="{{ old('email') }}" aria-label="Email Address">
+                @error('email')
+                    <div class="mt-1 text-red-400 text-sm">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-6">
                 <label for="password" class="block mb-1 text-sm">Password</label>
                 <input type="password" name="password" id="password" required
-                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    aria-label="Password">
+                @error('password')
+                    <div class="mt-1 text-red-400 text-sm">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit"
